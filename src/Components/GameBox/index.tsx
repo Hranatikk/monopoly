@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
 
+// Components
+import { Square } from './components';
+
+// Fixtures
+import { bottomSqaures, leftSqaures, topSqaures, rightSqaures } from '../../Fixtures';
+
 import './styles.css';
 
 interface IState {
-  isLoaded: boolean;
+  isInfoVisible: boolean;
 }
 
 class GameBox extends Component<{}, IState> {
+  state:IState = {
+    isInfoVisible: false,
+  }
+
+  private _handleShowPropertyInfo = (item:any) => {
+
+  }
 
   render() {
-
     return (
       <div className="table">
         <div className="board">
+
           <div className="center">
             <div className="community-chest-deck">
               <h2 className="label">Community Chest</h2>
               <div className="deck"></div>
             </div>
+            
             <h1 className="title">MONOPOLY</h1>
             <div className="chance-deck">
               <h2 className="label">Chance</h2>
@@ -34,69 +48,20 @@ class GameBox extends Component<{}, IState> {
           </div>
 
           <div className="row horizontal-row bottom-row">
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar light-blue"></div>
-                <div className="name">Connecticut Avenue</div>
-                <div className="price">PRICE $120</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar light-blue"></div>
-                <div className="name">Vermont Avenue</div>
-                <div className="price">Price $100</div>
-              </div>
-            </div>
-            <div className="space chance">
-              <div className="container">
-                <div className="name">Chance</div>
-                <i className="drawing fa fa-question"></i>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar light-blue"></div>
-                <div className="name">Oriental Avenue</div>
-                <div className="price">Price $100</div>
-              </div>
-            </div>
-            <div className="space railroad">
-              <div className="container">
-                <div className="name">Reading Railroad</div>
-                <i className="drawing fa fa-subway"></i>
-                <div className="price">Price $200</div>
-              </div>
-            </div>
-            <div className="space fee income-tax">
-              <div className="container">
-                <div className="name">Income Tax</div>
-                <div className="diamond"></div>
-                <div className="instructions">Pay 10%<br/>or<br/>$200</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar dark-purple"></div>
-                <div className="name">Baltic Avenue</div>
-                <div className="price">Price $50</div>
-              </div>
-            </div>
-            <div className="space community-chest">
-              <div className="container">
-                <div className="name">Community Chest</div>
-                <i className="drawing fa fa-cube"></i>
-                <div className="instructions">Follow instructions on top card</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar dark-purple"></div>
-                <div className="name three-line-name">Mediter-<br/>ranean<br/>Avenue</div>
-                <div className="price">Price $50</div>
-              </div>
-            </div>
+            {bottomSqaures.map(item => (
+                <Square
+                  id={item.id}
+                  type={item.type}
+                  color={item.color}
+                  name={item.name}
+                  price={item.price}
+                  tax={item.tax}
+                />
+              )
+            )}
           </div>
+
+
 
           <div className="space corner jail">
             <div className="just">Just</div>
@@ -104,9 +69,9 @@ class GameBox extends Component<{}, IState> {
               <div className="container">
                 <div className="name">In</div>
                 <div className="window">
-                  <div className="bar"></div>
-                  <div className="bar"></div>
-                  <div className="bar"></div>
+                  <div className="bar"/>
+                  <div className="bar"/>
+                  <div className="bar"/>
                   <i className="person fa fa-frown-o"></i>
                 </div>
                 <div className="name">Jail</div>
@@ -115,70 +80,20 @@ class GameBox extends Component<{}, IState> {
             <div className="visiting">Visiting</div>
           </div>
 
+
+
           <div className="row vertical-row left-row">
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar orange"></div>
-                <div className="name">New York Avenue</div>
-                <div className="price">Price $200</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar orange"></div>
-                <div className="name">Tennessee Avenue</div>
-                <div className="price">Price $180</div>
-              </div>
-            </div>
-            <div className="space community-chest">
-              <div className="container">
-                <div className="name">Community Chest</div>
-                <i className="drawing fa fa-cube"></i>
-                <div className="instructions">Follow instructions on top card</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar orange"></div>
-                <div className="name">St. James Avenue</div>
-                <div className="price">Price $180</div>
-              </div>
-            </div>
-            <div className="space railroad">
-              <div className="container">
-                <div className="name long-name">Pennsylvania Railroad</div>
-                <i className="drawing fa fa-subway"></i>
-                <div className="price">Price $200</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar purple"></div>
-                <div className="name">Virginia Avenue</div>
-                <div className="price">Price $160</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar purple"></div>
-                <div className="name">States Avenue</div>
-                <div className="price">Price $140</div>
-              </div>
-            </div>
-            <div className="space utility electric-company">
-              <div className="container">
-                <div className="name">Electric Company</div>
-                <i className="drawing fa fa-lightbulb-o"></i>
-                <div className="price">Price $150</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar purple"></div>
-                <div className="name">St. Charles Place</div>
-                <div className="price">Price $140</div>
-              </div>
-            </div>
+            {leftSqaures.map(item => (
+                <Square
+                  id={item.id}
+                  type={item.type}
+                  color={item.color}
+                  name={item.name}
+                  price={item.price}
+                  tax={item.tax}
+                />
+              )
+            )}
           </div>
 
           <div className="space corner free-parking">
@@ -188,70 +103,19 @@ class GameBox extends Component<{}, IState> {
               <div className="name">Parking</div>
             </div>
           </div>
-
+          
           <div className="row horizontal-row top-row">
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar red"></div>
-                <div className="name">Kentucky Avenue</div>
-                <div className="price">Price $220</div>
-              </div>
-            </div>
-            <div className="space chance">
-              <div className="container">
-                <div className="name">Chance</div>
-                <i className="drawing fa fa-question blue"></i>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar red"></div>
-                <div className="name">Indiana Avenue</div>
-                <div className="price">Price $220</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar red"></div>
-                <div className="name">Illinois Avenue</div>
-                <div className="price">Price $200</div>
-              </div>
-            </div>
-            <div className="space railroad">
-              <div className="container">
-                <div className="name">B & O Railroad</div>
-                <i className="drawing fa fa-subway"></i>
-                <div className="price">Price $200</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar yellow"></div>
-                <div className="name">Atlantic Avenue</div>
-                <div className="price">Price $260</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar yellow"></div>
-                <div className="name">Ventnor Avenue</div>
-                <div className="price">Price $260</div>
-              </div>
-            </div>
-            <div className="space utility waterworks">
-              <div className="container">
-                <div className="name">Waterworks</div>
-                <i className="drawing fa fa-tint"></i>
-                <div className="price">Price $120</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar yellow"></div>
-                <div className="name">Marvin Gardens</div>
-                <div className="price">Price $280</div>
-              </div>
-            </div>
+            {topSqaures.map(item => (
+                <Square
+                  id={item.id}
+                  type={item.type}
+                  color={item.color}
+                  name={item.name}
+                  price={item.price}
+                  tax={item.tax}
+                />
+              )
+            )}
           </div>
 
           <div className="space corner go-to-jail">
@@ -263,69 +127,19 @@ class GameBox extends Component<{}, IState> {
           </div>
 
           <div className="row vertical-row right-row">
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar green"></div>
-                <div className="name">Pacific Avenue</div>
-                <div className="price">Price $300</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar green"></div>
-                <div className="name three-line-name">North Carolina Avenue</div>
-                <div className="price">Price $300</div>
-              </div>
-            </div>
-            <div className="space community-chest">
-              <div className="container">
-                <div className="name">Community Chest</div>
-                <i className="drawing fa fa-cube"></i>
-                <div className="instructions">Follow instructions on top card</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar green"></div>
-                <div className="name long-name">Pennsylvania Avenue</div>
-                <div className="price">Price $320</div>
-              </div>
-            </div>
-            <div className="space railroad">
-              <div className="container">
-                <div className="name">Short Line</div>
-                <i className="drawing fa fa-subway"></i>
-                <div className="price">Price $200</div>
-              </div>
-            </div>
-            <div className="space chance">
-              <div className="container">
-                <div className="name">Chance</div>
-                <i className="drawing fa fa-question"></i>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar dark-blue"></div>
-                <div className="name">Park Place</div>
-                <div className="price">Price $350</div>
-              </div>
-            </div>
-            <div className="space fee luxury-tax">
-              <div className="container">
-                <div className="name">Luxury Tax</div>
-                <div className="drawing fa fa-diamond"></div>
-                <div className="instructions">Pay $75.00</div>
-              </div>
-            </div>
-            <div className="space property">
-              <div className="container">
-                <div className="color-bar dark-blue"></div>
-                <div className="name">Boardwalk</div>
-                <div className="price">Price $400</div>
-              </div>
-            </div>
+            {rightSqaures.map(item => (
+                <Square
+                  id={item.id}
+                  type={item.type}
+                  color={item.color}
+                  name={item.name}
+                  price={item.price}
+                  tax={item.tax}
+                />
+              )
+            )}
           </div>
+
         </div>
       </div>
     );

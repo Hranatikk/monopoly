@@ -78,6 +78,11 @@ h6 {
   padding-right: 50px;
 }
 
+.space .container:hover {
+  background-color: #feda00;
+  opacity: 0.5;
+}
+
 .board {
   display: grid;
   grid-template-columns: 125px repeat(9, 80px) 125px;
@@ -111,8 +116,8 @@ h6 {
 
 .community-chest-deck {
   grid-column: 2 / 4;
-  grid-row: 2 / 4;
-  transform: rotate(135deg);
+  grid-row: 1 / 4;
+
   margin-bottom: 60px;
   margin-right: 60px;
 }
@@ -151,21 +156,22 @@ h6 {
   grid-template-columns: 125px;
   grid-template-rows: repeat(9, 80px);
 }
-.vertical-row .container {
-
+.left-row {
+  transform: rotate(180deg);
+}
+.left-row .container {
+  transform: rotate(180deg);
 }
 
 .bottom-row {
   grid-column: 2 / 11;
   grid-row: 11;
+  direction: rtl;
 }
 
 .left-row {
   grid-column: 1;
   grid-row: 2 / 11;
-}
-.left-row .container {
-
 }
 
 .top-row {
@@ -176,9 +182,6 @@ h6 {
 .right-row {
   grid-column: 11;
   grid-row: 2 / 11;
-}
-.right-row .container {
-  
 }
 
 .space {
@@ -261,7 +264,6 @@ h6 {
 }
 .go .container {
   justify-content: flex-start;
-  transform: rotate(315deg);
 }
 .go .instructions {
   padding: 0 30px;
