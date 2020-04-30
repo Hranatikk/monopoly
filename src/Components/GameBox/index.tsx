@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Components
-import { Square } from './components';
+import { Square, SquareInfo } from './components';
 
 // Fixtures
 import { bottomSqaures, leftSqaures, topSqaures, rightSqaures } from '../../Fixtures';
@@ -10,33 +10,37 @@ import './styles.css';
 
 interface IState {
   isInfoVisible: boolean;
+  activePropertyItem: any;
 }
 
 class GameBox extends Component<{}, IState> {
   state:IState = {
     isInfoVisible: false,
+    activePropertyItem: null,
   }
 
   private _handleShowPropertyInfo = (item:any) => {
+    this.setState({ isInfoVisible: true, activePropertyItem: item });
+  }
 
+  private _handleHidePropertyInfo = () => {
+    this.setState({ isInfoVisible: false });
   }
 
   render() {
+    const { isInfoVisible, activePropertyItem } = this.state;
+
     return (
       <div className="table">
         <div className="board">
 
           <div className="center">
-            <div className="community-chest-deck">
-              <h2 className="label">Community Chest</h2>
-              <div className="deck"></div>
-            </div>
+
+            {isInfoVisible && <SquareInfo item={activePropertyItem}/>}
             
             <h1 className="title">MONOPOLY</h1>
-            <div className="chance-deck">
-              <h2 className="label">Chance</h2>
-              <div className="deck"></div>
-            </div>
+
+            
           </div>
 
           <div className="space corner go">
@@ -56,6 +60,8 @@ class GameBox extends Component<{}, IState> {
                   name={item.name}
                   price={item.price}
                   tax={item.tax}
+                  onMouseEnter={() => this._handleShowPropertyInfo(item)}
+                  onMouseLeave={() => this._handleHidePropertyInfo()}
                 />
               )
             )}
@@ -91,6 +97,8 @@ class GameBox extends Component<{}, IState> {
                   name={item.name}
                   price={item.price}
                   tax={item.tax}
+                  onMouseEnter={() => this._handleShowPropertyInfo(item)}
+                  onMouseLeave={() => this._handleHidePropertyInfo()}
                 />
               )
             )}
@@ -113,6 +121,8 @@ class GameBox extends Component<{}, IState> {
                   name={item.name}
                   price={item.price}
                   tax={item.tax}
+                  onMouseEnter={() => this._handleShowPropertyInfo(item)}
+                  onMouseLeave={() => this._handleHidePropertyInfo()}
                 />
               )
             )}
@@ -135,6 +145,8 @@ class GameBox extends Component<{}, IState> {
                   name={item.name}
                   price={item.price}
                   tax={item.tax}
+                  onMouseEnter={() => this._handleShowPropertyInfo(item)}
+                  onMouseLeave={() => this._handleHidePropertyInfo()}
                 />
               )
             )}

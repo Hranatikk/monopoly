@@ -9,12 +9,14 @@ interface IProps {
   price?: number;
   color?: string;
   tax?: number[];
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }
 
 class Square extends Component<IProps, {}> {
 
   render() {
-    const { name, price, color, id, type, tax } = this.props;
+    const { name, price, color, id, type, tax, onMouseEnter, onMouseLeave } = this.props;
     let sqaureColor = `${color} color-bar`;
 
     if(type === 'tax') {
@@ -68,8 +70,8 @@ class Square extends Component<IProps, {}> {
       <div className="space property" key={id} >
         <div
           className="container"
-          onMouseEnter={() => console.log('enter')}
-          onMouseLeave={() => console.log('leave')}
+          onMouseEnter={() => onMouseEnter()}
+          onMouseLeave={() => onMouseLeave()}
         >
           <div className={sqaureColor}/>
           <div className="name">{name}</div>
