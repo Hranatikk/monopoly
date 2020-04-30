@@ -11,12 +11,18 @@ import './styles.css';
 interface IState {
   isInfoVisible: boolean;
   activePropertyItem: any;
+
+  left: number;
+  top: number;
 }
 
 class GameBox extends Component<{}, IState> {
   state:IState = {
     isInfoVisible: false,
     activePropertyItem: null,
+
+    left: 0,
+    top: 0,
   }
 
   private _handleShowPropertyInfo = (item:any) => {
@@ -27,11 +33,21 @@ class GameBox extends Component<{}, IState> {
     this.setState({ isInfoVisible: false });
   }
 
+  private _handleRollDice = () => {
+    let random = Math.floor(Math.random() * Math.floor(49));
+    let element = document.getElementById(`square_${random}`);
+
+    if(element) {
+      this.setState({ left: element.offsetLeft, top: element.offsetTop })
+    }
+  }
+
   render() {
     const { isInfoVisible, activePropertyItem } = this.state;
 
     return (
       <div className="table">
+        <div className="user" style={{left: this.state.left, top: this.state.top}} />
         <div className="board">
 
           <div className="center">
@@ -40,6 +56,15 @@ class GameBox extends Component<{}, IState> {
             
             <h1 className="title">MONOPOLY</h1>
 
+            <div className="game-controller">
+              <div className="main-controller">
+
+                <div className="roll-dice" onClick={() => this._handleRollDice()}>
+                  <span>Roll dice</span>
+                </div>
+
+              </div>
+            </div>
             
           </div>
 
